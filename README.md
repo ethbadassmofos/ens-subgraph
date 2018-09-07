@@ -30,7 +30,7 @@ For Ethereum network data you can either run a local node or use Infura.io:
 4. In repo root build it with `yarn; yarn build-ipfs --verbosity debug` and copy the IPFS hash for use in the step below
 5. Clone https://github.com/graphprotocol/graph-node and run `cargo build`
 
-Once you have all the dependencies set up you can run the following:
+Once you have all the dependencies set up you can run the following in `graph-node` project root:
 
 ```
 cargo run -p graph-node --release -- \
@@ -40,11 +40,11 @@ cargo run -p graph-node --release -- \
   --subgraph IPFS_HASH
 ```
 
-Try your OS username as `USERNAME` and `PASSWORD` is optional (it can be anything).
+Ensure you set `USERNAME` and `PASSWORD` correctly.
 
 This will also spin up a GraphiQL interface at `http://127.0.0.1:8000/`.
 
-### Command-line interface
+### Command-line interface for graph-node
 
 ```
 USAGE:
