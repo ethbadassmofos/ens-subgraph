@@ -3,31 +3,20 @@ schema:
   file: ./schema.graphql
 dataSources:
 - kind: ethereum/contract
-  name: AdNetworks
+  name: ENS
   source:
-    address: "5E2Eb68A31229B469e34999C467b017222677183"
-    abi: Registry
+    address: "314159265dd8dbb310642f98f50c066173c1259b"
+    abi: ENS
   mapping:
     kind: ethereum/events
     apiVersion: 0.0.1
     language: wasm/assemblyscript
-    file: ./mappings/ad-networks.ts
+    file: ./mappings/ens.ts
     entities:
-    - Application
-    - Challenge
+    - Domain
     abis:
-    - name: Registry
-      file: ./abis/adNetworks.json
+    - name: ENS
+      file: ./abis/ens.json
     eventHandlers:
-    - event: _Application(bytes32,uint256,uint256,string,address)
-      handler: applicationAdded
-    - event: _ApplicationWhitelisted(bytes32)
-      handler: applicationWhitelist
-    - event: _ApplicationRemoved(bytes32)
-      handler: applicationRemoved
-    - event: _Challenge(bytes32,uint256,string,uint256,uint256,address)
-      handler: challenge
-    - event: _ChallengeSucceeded(bytes32,uint256,uint256,uint256)
-      handler: challengeSucceeded
-    - event: _ChallengeFailed(bytes32,uint256,uint256,uint256)
-      handler: challengeFailed
+    - event: NewOwner(bytes32,bytes32,address)
+      handler: domainRegistered
