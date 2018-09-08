@@ -19,4 +19,6 @@ dataSources:
       file: ./abis/ens.json
     eventHandlers:
     - event: NewOwner(bytes32,bytes32,address)
-      handler: domainRegistered
+      handler: nameRegistered
+    - event: Transfer(bytes32,address)
+      handler: nameTransferred
