@@ -27,7 +27,7 @@ For Ethereum network data you can either run a local node or use Infura.io:
 2. Install PostgreSQL and run `initdb -D .postgres` followed by `createdb adchain-subgraph`
 3. If using Ubuntu, you may need to install additional packages:
    - `sudo apt-get install -y clang libpq-dev libssl-dev pkg-config`
-4. In repo root build it with `yarn; yarn build-ipfs --verbosity debug` and copy the IPFS hash for use in the step below
+4. In repo root build it with `yarn; yarn build-ipfs:local --verbosity debug` and copy the IPFS hash for use in the step below
 5. Clone https://github.com/graphprotocol/graph-node and run `cargo build`
 
 Once you have all the dependencies set up you can run the following in `graph-node` project root:
@@ -76,3 +76,34 @@ The Graph supports the following environment variables:
 ```
 THEGRAPH_SENTRY_URL (optional) — Activates error reporting using Sentry
 ```
+
+### Deploying to hosted node
+
+Node we are using: `hackathon-node-01 = 35.242.224.197`
+
+Build IPFS assets:
+
+```
+yarn build-ipfs:hosted
+```
+
+Deploy:
+
+```
+yarn graph deploy \
+  --watch \
+  --verbosity debug \
+  --node http://35.242.224.197:8020 \
+  --ipfs /ip4/35.242.224.197/tcp/8030 \
+  --subgraph-name ens-subgraph \
+  --api-key fc71e393d6d54390950fab9ebf8535d9 \
+  subgraph.yaml
+```
+
+You can access our node:
+
+* http://35.242.224.197:8020/ens-subgraph - graphql
+* http://35.242.224.197/ens-subgraph - graphiql (the GUI!)
+* http://35.242.224.197:8001/ens-subgraph (graphql over websockts)
+
+More instructions: https://github.com/graphprotocol/graph-node/wiki/ETHBerlin-Hackathon

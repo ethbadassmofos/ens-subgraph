@@ -3,10 +3,12 @@
   "scripts": {
     "codegen": "graph codegen subgraph.yaml",
     "build": "graph build subgraph.yaml",
-    "build-ipfs": "graph build --ipfs /ip4/127.0.0.1/tcp/5001 subgraph.yaml",
+    "build-ipfs:local": "graph build --ipfs /ip4/127.0.0.1/tcp/5001 subgraph.yaml",
+    "build-ipfs:hosted": "graph build --ipfs /ip4/35.242.224.197/tcp/8030 subgraph.yaml",
     "build-wast": "graph build -t wast subgraph.yaml"
   },
-  "devDependencies": {
-    "@graphprotocol/graph-cli": "^0.2.3"
+  "devDependencies": {},
+  "dependencies": {
+    "graph-cli": "hiddentao/graph-cli#c4877a023b9fc32c8c2f5fdd62f3c0f36d34cc0f"
   }
 }
